@@ -10,6 +10,7 @@ Route::post('auth', [AuthController::class, 'login']);
 Route::apiResource('user', UserController::class)->only('store');
 
 Route::middleware('auth:sanctum')->group(function() {
+    Route::get('auth/me', [AuthController::class, 'user']);
     Route::delete('auth/token', [AuthController::class, 'revokeAllTokens']);
 
     Route::apiResource('user', UserController::class)->except('store');
